@@ -1,0 +1,230 @@
+<app-side-bar-admin>
+
+
+  <div class="accordion-container">
+    <mat-accordion >
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{offer.title}}
+          </mat-panel-title>
+          <mat-panel-description>
+            Complete information about the offer
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div *ngIf="!offer">
+          <p>Sorry no application yet </p>
+        </div>
+        <div class="tabs-container">
+          <mat-tab-group animationDuration="2000ms">
+            <mat-tab label="offer Info"  style="color: green; font-size: 20px" class="tab-label">
+
+              <table class="offer-info-table">
+                <tr>
+                  <td class="td-name">Title: </td>
+                  <td>{{offer.title  }} </td>
+                </tr>
+                <tr>
+                  <td class="td-name">country: </td>
+                  <td>{{offer.country  }}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">complete address:: </td>
+                  <td>{{offer.completeAddress  }}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">official  website: </td>
+                  <td>{{offer.universityOfficialWebsite  }}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">mail address: </td>
+                  <td>{{offer.mailAddress  }}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Brief description: : </td>
+                  <td>{{offer.description  }}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">publish Date : </td>
+                  <td>{{offer.publishDate  }}</td>
+                </tr>
+
+              </table>
+
+
+              <!--        <ul >-->
+              <!--          <li>Title:  {{offer.title  }}    </li>-->
+              <!--          <li> university Name:   {{offer.universityName}}</li>-->
+              <!--          <li>country:  {{offer.country  }}</li>-->
+              <!--          <li>complite address:  {{offer.completeAddress  }}</li>-->
+              <!--          <li>Official website:  {{offer.universityOfficialWebsite}}</li>-->
+              <!--          <li>Mail address: {{offer.mailAddress}}</li>-->
+              <!--          <li>Brief description:   {{offer.description}}</li>-->
+              <!--          <li>Publish at:  {{offer.publishDate | date:'fullDate'}}</li>-->
+              <!--        </ul>-->
+
+
+            </mat-tab>
+            <mat-tab label="Required score and number of students  ">
+              <table class="offer-info-table">
+                <tr>
+                  <td class="td-name">Deadline: </td>
+                  <td>{{offer.deadlineDate | date:'fullDate'}}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Target classes: </td>
+                  <td> {{offer.targetClasses}}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Target Department:  </td>
+                  <td>{{offer.targetDepartment}}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Required Score:   </td>
+                  <td>  {{offer.score}}</td>
+                </tr>
+                <tr>
+                  <td class="td-name">Number of places:  </td>
+                  <td> {{offer.numberOfplaces}}</td>
+                </tr>
+                <tr hidden>
+                  <td class="td-name">Reserved:   </td>
+                  <td>  reserved</td>
+                </tr>
+                <tr hidden>
+                  <td class="td-name">Reserved:   </td>
+                  <td>  reserved</td>
+                </tr>
+
+
+              </table>
+
+            </mat-tab>
+            <mat-tab label="more information">
+              <table class="offer-info-table">
+                <tr>
+                  <td></td>
+                  <td>
+                    <p>{{offer.conditions}}</p>
+                  </td>
+                </tr>
+              </table>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </div>
+
+
+  <br>
+
+  <div class="row" style="margin-bottom: 60px">
+    <div class="col-5">
+      <form class="example-form">
+
+        <mat-form-field class="example-full-width">
+          <input matInput  maxlength="256" placeholder="Student identifier" name="identifier" >
+        </mat-form-field>
+
+      </form>
+
+    </div>
+    <div class="col-6">
+      <div class="example-container">
+        <form class="example-container" [formGroup]="options" (click)="testing()" >
+          <div>
+            <label>Application Based on Status: </label> &nbsp;  &nbsp;&nbsp;
+            <mat-radio-group formControlName="floatLabel">
+              <mat-radio-button value="All">All</mat-radio-button>
+              <mat-radio-button value="Accepted">Accepted</mat-radio-button>
+              <mat-radio-button value="Rejected">Rejected</mat-radio-button>
+              <mat-radio-button value="Moved To  the waiting list">In waiting list</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%"   matSort >
+
+    <ng-container matColumnDef="identifier">
+      <th mat-header-cell *matHeaderCellDef> Identifier </th>
+      <td mat-cell *matCellDef="let element">  {{element.studentAdditionalInfo.identifier}} </td>
+    </ng-container>
+
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef> fullName </th>
+      <td mat-cell *matCellDef="let element"> {{element.user.lastName}} </td>
+    </ng-container>
+    <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> email </th>
+      <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+    </ng-container>
+    <!-- current class Column -->
+    <ng-container matColumnDef="currentClass">
+      <th mat-header-cell *matHeaderCellDef> current Class </th>
+      <td mat-cell *matCellDef="let element">{{element.currentClass}} </td>
+    </ng-container>
+
+    <!-- applied at Column -->
+    <ng-container matColumnDef="appliedAt">
+      <th mat-header-cell *matHeaderCellDef> application date </th>
+      <td mat-cell *matCellDef="let element"> {{element.applyedAt | date:'fullDate'}} </td>
+    </ng-container>
+    <!-- Score  Column -->
+    <ng-container matColumnDef="score">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header="totalScore"> Score </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalScore}} </td>
+    </ng-container>
+ <!-- application File  Column -->
+    <ng-container matColumnDef="applicationFile">
+      <th mat-header-cell *matHeaderCellDef> application File </th>
+      <td mat-cell *matCellDef="let element">
+
+        <a href="{{element.applicationFile}}" target="_blank" ><i class="material-icons">file_open</i></a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="applicationStatus">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element">
+        {{element.applicationStatus}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button (click)="openDialog(element._id)">Final decision </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <br><br><br><br>
+
+<button mat-raised-button (click)="downloadFile('sample.xlsx')"> <img width="48" height="48" src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="microsoft-excel-2019--v1"/>Export Accepted list</button>
+  <br><br><br><br>
+  <br><br><br><br>
+  <br><br><br><br>
+  <br><br><br><br>
+  <br><br><br><br>
+
+
+  <app-footer></app-footer>
+</app-side-bar-admin>
+
+
+

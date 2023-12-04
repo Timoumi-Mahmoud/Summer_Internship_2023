@@ -1,0 +1,145 @@
+<app-side-bar-admin>
+  <div class="container">
+    <form class="example-form">
+      <div class="row">
+        <div class="col-5">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email or Name" >
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field >
+            <mat-label>Department</mat-label>
+            <mat-select ng-model="department"  #dep>
+              <mat-option *ngFor="let foo of departments" [value]="foo.value"  >
+                {{foo.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field>
+            <mat-select placeholder="Option"  multiple>
+              <mat-option *ngFor="let topping of classOption" [value]="classOption">{{topping}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+        <div class="col-1"></div>
+        <div class="col-2">
+          <button mat-raised-button   (click)="resetSearch()" [hidden]="searchButtonIsClicked===false" color="primary"> <i class="material-icons "> refresh</i> refresh</button>
+          <button mat-raised-button  style="width: 100% ; height:55%" (click)="SearchByDepartment(dep)" color="accent"  [hidden]="searchButtonIsClicked===true">Search <i class="material-icons">search</i> </button>
+        </div>
+      </div>
+      </form>
+  </div>
+
+  <br>
+
+
+  <div class="example-container mat-elevation-z8 ">
+  <table mat-table
+         [dataSource]="dataSource"  matSort  class="users-table">
+
+
+
+    <ng-container matColumnDef="profile_img">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell">profile image</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell">
+          <div *ngIf="element.profile_img ===''">
+            <img src = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg " width="100px"   />
+
+          </div>
+          <img src = {{element.profile_img}}   width="100px"   />
+
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell" mat-sort-header="firstName">Full Name</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell" >
+<!--        {{element.gender}}-->
+
+          <span *ngIf="element.gender==='Female'">
+            <strong>Mrs</strong>
+          </span>
+          <span *ngIf="element.gender==='Male'">
+            <strong>Mr</strong>
+          </span>
+
+          {{element.firstName}}  {{element.lastName}}
+
+     </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell">email</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell"> {{element.email}}</td>
+    </ng-container>
+<!--    <ng-container matColumnDef="isActive" hidden>-->
+<!--      <th mat-header-cell *matHeaderCellDef class="users-table-cell">isActive</th>-->
+<!--      <td mat-cell *matCellDef="let element" class="users-table-cell"> {{element.isActive}}</td>-->
+<!--    </ng-container>-->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell">address</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell"> {{element.address}}</td>
+    </ng-container>
+    <ng-container matColumnDef="birthDate">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell" mat-sort-header="birthDate">birth Date</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell"> {{element.birthDate | date }} </td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell">phoneNumber</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell"> {{element.phoneNumber}}</td>
+    </ng-container>
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef class="users-table-cell" mat-sort-header="department">department</th>
+      <td mat-cell *matCellDef="let element" class="users-table-cell"> {{element.department}}</td>
+    </ng-container>
+<!--    <ng-container matColumnDef="applications">-->
+<!--      <th mat-header-cell *matHeaderCellDef class="users-table-cell" mat-sort-header="department">Application</th>-->
+<!--      <td mat-cell *matCellDef="let element" class="users-table-cell"> empty for the moment</td>-->
+<!--    </ng-container>-->
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns ; "
+        (click)="onRowClicked(row)"
+        [class.selected]="row.selected"
+        (click)="row.selected= !row.selected"
+
+        [ngClass]="{'hightLightInactiveUsers': row.isActive==0,
+        }">
+
+    ></tr>
+
+
+  </table>
+
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+
+  </div>
+
+  <p>
+  </p>
+
+  <div class="row">
+
+    <div class="col-9">
+    </div>
+    <div class="col-3">
+      <button mat-raised-button (click)="blockUser()" [disabled]="selectedRow === undefined"  color="primary"> <i class="material-icons "> block</i> Block</button>&nbsp;&nbsp;
+      <button mat-raised-button (click)="deleteUser()" [disabled]="selectedRow === undefined"  color="primary"> <i class="material-icons "> restore_from_trash</i> Delete</button>
+    </div>
+  </div>
+
+
+</app-side-bar-admin>
+
+
+
+

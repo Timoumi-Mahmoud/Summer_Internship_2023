@@ -1,0 +1,27 @@
+.mat-mdc-button .mdc-button__label, .mat-mdc-unelevated-button .mdc-button__label, .mat-mdc-raised-button .mdc-button__label, .mat-mdc-outlined-button .mdc-button__label {
+  z-index: 1;
+  font-size: 18px;
+  margin: 18px 0 30px auto;
+}
+
+element {
+
+}
+
+
+.mdc-list {
+  margin-top: 50px;
+  padding: 8px 0;
+  list-style-type: none;
+}
+.mat-mdc-button .mat-mdc-button-touch-target, .mat-mdc-unelevated-button .mat-mdc-button-touch-target, .mat-mdc-raised-button .mat-mdc-button-touch-target, .mat-mdc-outlined-button .mat-mdc-button-touch-target {
+  position: absolute;
+  top: 50%;
+  height: 48px;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+/*button:hover{*/
+/*  background-color: orange;*/
+/*}*/

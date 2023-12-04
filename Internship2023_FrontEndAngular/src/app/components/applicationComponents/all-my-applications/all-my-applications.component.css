@@ -1,0 +1,87 @@
+.application-card{
+margin-top: 20px;
+
+  margin-bottom: 20px
+
+}
+
+.offer-img{
+  padding: 10px 50px 20px;
+  width: 300px;
+  float: left;
+  margin: 5px;
+}
+
+.p{
+  text-align: justify;
+  font-size: 25px;
+}
+
+.status-waiting{
+  text-align: right;
+  display: inline-block;
+
+  background-color: yellow ;
+  place-items:  center;
+  border-radius: 20px;
+  padding: 10px 40px 10px 40px;
+  margin-bottom: 20px;
+  color: darkblue;
+  font-weight: bolder;
+  margin-left: 80px;
+
+}
+
+.status-accepted{
+  text-align: right;
+  /*text-align: center;*/
+  display: inline-block;
+  background-color: blue ;
+  border-radius: 20px;
+  padding: 10px 40px 10px 40px;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: bolder;
+  margin-left: 80px;
+
+}
+.status-rejected{
+  text-align: right;
+  /*text-align: center;*/
+  display: inline-block;
+  background-color: darkred ;
+  border-radius: 20px;
+  padding: 10px 40px 10px 40px;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: bolder;
+  margin-left: 80px;
+
+}
+.status-waiting-list{
+  text-align: right;
+  /*text-align: center;*/
+  display: inline-block;
+  background-color: orange ;
+  border-radius: 20px;
+  padding: 10px 40px 10px 40px;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: bolder;
+  margin-left: 80px;
+
+}
+
+
+.empty-applicationList p{
+  font-family: monospace;
+  font-size: 20px;
+  padding: 10px 40px 10px 10px ;
+  margin: 10px 40px 10px 10px ;
+}
+
+
+.additional-info-head-table th{
+  background-color:black;
+  color: white;
+}

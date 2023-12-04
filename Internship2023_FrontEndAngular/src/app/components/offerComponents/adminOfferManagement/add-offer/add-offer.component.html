@@ -1,0 +1,333 @@
+
+
+<app-side-bar-admin>
+
+
+
+  <div style="text-align: center; margin-left: 50%">
+    <mat-spinner [diameter]="90" color="accent" *ngIf="spinnerActive===true" style="text-align: center;">
+    </mat-spinner></div>
+  <div class="my-container">
+    <form class="example-form "  #f="ngForm"   #form="ngForm">
+
+      <p>In the form below you can add a new Offer, before clicking on the save button <strong> please review carefully your input</strong> :  </p>
+      <br>
+      <br>
+      <mat-accordion>
+
+        <!--        ############ First Panel ############-->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Brief description of the Offer:
+            </mat-panel-title>
+            <mat-panel-description>
+              opportunity  title ,hosted university, country  and deadline
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+
+          <mat-form-field class="example-full-width" >
+            <input name="title" ngModel matInput placeholder="title" ngModel  #title="ngModel" minlength="11" required >
+            <mat-hint>Errors appear instantly!</mat-hint>
+            <mat-error *ngIf="title.dirty || title.touched">
+                <span *ngIf="title.errors?.['minlength']">
+                  Minimum length is <strong>10</strong> character
+                </span>
+              <span *ngIf="title.hasError('required')">
+                    title field is <strong>required</strong>
+                </span>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="University Name" name="universityName" ngModel required #universityName="ngModel">
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="universityName.dirty || universityName.touched">
+                  <span *ngIf="universityName.hasError('required')">
+                    Number of places field is <strong>required</strong>
+                </span>
+                </mat-error>
+
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Complite address" ngModel name="completeAddress" required  ngModel #compliteAddress="ngModel"  >
+                <mat-hint>Errors appear instantly!</mat-hint>
+
+                <mat-error *ngIf="compliteAddress.dirty || compliteAddress.touched">
+                  <span *ngIf="compliteAddress.hasError('required')">
+                     University location is <strong>required</strong>
+                </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-2">
+              <mat-form-field >
+                <mat-label>country</mat-label>
+                <mat-select ngModel name="country"  ngModel #count="ngModel" required  >
+                  <mat-option *ngFor="let foo of country" [value]="foo.value" >
+                    {{foo.viewValue}}
+                  </mat-option>
+                </mat-select>
+                <mat-hint>Errors appear instantly!</mat-hint>
+
+                <mat-error *ngIf="count.dirty || count.touched">
+
+                    <span *ngIf="count.hasError('required')">
+                    country field is <strong>required</strong>
+                </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="mailAddress" ngModel  name="mailAddress"   required id="mailAddress"
+                       #email="ngModel" pattern="[a-zA-Z0-9]+@[a-zA-z0-9]+.[a-zA-z0-9]+.{2,4}">
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="email.dirty || email.touched">
+                <span *ngIf="email.errors?.['pattern']">
+                  please provide a valide email Address
+                </span>
+                  <span *ngIf="email.hasError('required')">
+                    Email is <strong>required</strong>
+                </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <br>
+          <mat-divider></mat-divider>
+          <br>
+
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder=" numberOfplaces" ngModel required name="numberOfplaces" type="number"
+                       #nbrePlaces="ngModel"  pattern="[1-50]\d*"  min="1" max="90"    >
+                <mat-hint>Errors appear instantly!</mat-hint>
+
+                <mat-error *ngIf="nbrePlaces.dirty || nbrePlaces.touched">
+                    <span *ngIf="nbrePlaces.hasError('min')">
+                      Number of places must be between <strong>1</strong> and <strong>30</strong>
+                    </span>
+                  <span *ngIf="nbrePlaces.hasError('max')">
+                      Number of places must be between  <strong>1</strong> and <strong>90</strong>
+                    </span>
+                  <span *ngIf="nbrePlaces.hasError('required')">
+                        Number of places field is <strong>required</strong>
+                    </span>
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <div class="col-3">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Score" ngModel name="score"
+                       [errorStateMatcher]="matcher" type="number" required  #score="ngModel"   min="1" max="50">
+                <mat-error *ngIf="score.dirty || score.touched">
+                    <span *ngIf="score.hasError('min')">
+                      Score must be between <strong>1</strong> and <strong>1</strong>
+                    </span>
+                  <span *ngIf="score.hasError('max')">
+                      Score must be between  <strong>1</strong> and <strong>50</strong>
+                    </span>
+                  <span *ngIf="score.hasError('required')">
+                        Score field is <strong>required</strong>
+                    </span>
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="Deadline" name="deadlineDate" ngModel required #deadline="ngModel" [min]="todayDate" >
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-hint>Errors appear instantly! </mat-hint>
+
+                <mat-error *ngIf="deadline.dirty || deadline.touched">
+
+                    <span *ngIf="deadline.hasError('required')">
+                     DeadLine date is <strong>required</strong>
+                </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <mat-form-field>
+                <input matInput type="text" name="universityOfficialWebsite" ngModel placeholder="Official Website" ngModel #website="ngModel" required>
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="website.dirty || website.touched">
+                    <span *ngIf="website.hasError('required')">
+                     University website  is <strong>required</strong>
+                </span>
+                </mat-error>
+
+              </mat-form-field>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+              <mat-form-field class="example-full-width">
+                <mat-label>Brief description </mat-label>
+                <textarea matInput placeholder="Brief description of the university like the field of study , advantages ...etc"
+                          ngModel name="description" #description="ngModel" required minlength="100" ></textarea>
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="description.dirty || description.touched">
+                  <span *ngIf="description.hasError('required')">
+                    Description field is <strong>required</strong>
+                </span>
+                  <span *ngIf="description.errors?.['minlength']">
+                  Description must have more than  <strong>100</strong> character
+                </span>
+                </mat-error>
+
+              </mat-form-field>
+            </div>
+            <div class="col-1"></div>
+
+          </div>
+          <br>
+
+          <mat-divider></mat-divider>
+          <br>
+        </mat-expansion-panel>
+
+<!--        ############ Second Panel ############-->
+
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Target students:
+            </mat-panel-title>
+            <mat-panel-description>
+              departments , classes
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p></p>
+
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field>
+                <mat-label>Department</mat-label>
+                <mat-select ngModel name="targetDepartment" ngModel #depart="ngModel" required>
+                  <mat-option *ngFor="let food of department" [value]="food.value">
+                    {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+                <mat-hint>Errors appear instantly!</mat-hint>
+                <mat-error *ngIf="depart.dirty || depart.touched">
+                    <span *ngIf="depart.hasError('required')">
+                    Target department field is <strong>required</strong>
+                </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <mat-form-field>
+                <mat-label>Class</mat-label>
+                <mat-select  multiple ngModel name="targetClasses" ngModel #class="ngModel" required>
+                  <mat-option *ngFor="let topping of ClassList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+                <mat-hint>Errors appear instantly!</mat-hint>
+
+                <mat-error *ngIf="class.dirty || class.touched">
+
+                    <span *ngIf="class.hasError('required')">
+                    Target classes field is <strong>required</strong>
+                </span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-4">
+              <label class="label" for="#">Profile image</label>
+              <input type="file"  class="form-control" id="message" cols="30"  #image="ngModel" required
+                     ngModel  name="image" rows="4" placeholder="description" (change)="onFileSelected($event)">
+              <mat-hint>Errors appear instantly!</mat-hint>
+              <mat-error *ngIf="image.dirty || image.touched">
+                <span *ngIf="image.hasError('required')">
+                    An image of the university is <strong>required</strong>
+                </span>
+              </mat-error>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+
+
+          <!--        ############ Third Panel ############-->
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Terms and Condition:
+            </mat-panel-title>
+            <mat-panel-description>
+              <!--          Currently I am {{panelOpenState ? 'open' : 'closed'}}-->
+              More informations about this offer
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Please provide in detail all the additional information about this offer like:</p>
+          <ul>
+            <li>what are the requirement</li>
+            <li>document needed</li>
+            <li> what the  foreign univeristy  will offer </li>
+            <li>what is the complite proccess of application</li>
+            <li>..etc</li>
+          </ul>
+          <div class="container-row flex-grow-1">
+            <mat-form-field class="textarea-mat-field h-300 w-100">
+              <mat-label>Text Content</mat-label>
+              <textarea matInput   ngModel name="conditions" placeholder="Enter All requirement ...
+
+                " #newTextContent   rows="20" cols="90" ngModel #condtions="ngModel" required minlength="1000"
+              ></textarea>
+              <!--              cdkTextareaAutosize [cdkAutosizeMaxRows]="100"-->
+
+              <mat-hint>Errors appear instantly!</mat-hint>
+              <mat-error *ngIf="condtions.dirty || condtions.touched">
+                <span *ngIf="condtions.errors?.['minlength']">
+                  Conditons must contains more than  <strong>1000</strong> character
+                </span>
+                <span *ngIf="condtions.hasError('required')">
+                    Conditions field is <strong>required</strong>
+                </span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </div>
+  <div class="row ">
+    <div class="col-2"></div>
+    <div class="col-4">
+      <mat-card-actions >
+        <button  mat-raised-button color="primary" class="btn-primary btn"  (click)="saveOffer(f)" >Save</button>
+      </mat-card-actions>
+    </div>
+    <div class="col-6"></div>
+  </div>
+
+
+
+
+
+
+</app-side-bar-admin>
+
+

@@ -1,0 +1,128 @@
+<app-header></app-header>
+
+<!--<button mat-fab extended color="warn" class="general-button">-->
+<!--  &lt;!&ndash;  <mat-icon></mat-icon>&ndash;&gt;-->
+<!--  check button later-->
+<!--</button>-->
+<!--<mat-divider></mat-divider>-->
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="offset-3"></div>-->
+<!--    <div class="col-md-6">-->
+<!--      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid " novalidate class="feedback-form">-->
+<!--        &lt;!&ndash; Name &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--          <label for="name">First Name</label>-->
+<!--          <input type="text"-->
+<!--                 id="name"-->
+<!--                 class="form-control"-->
+<!--                 name="name"-->
+<!--                 placeholder="Your name"-->
+<!--                 [(ngModel)]="model.name"-->
+<!--                 #name="ngModel"-->
+<!--                 [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"-->
+<!--                 required/>-->
+<!--          &lt;!&ndash; input validation group &ndash;&gt;-->
+<!--          <div *ngIf="f.submitted && name.invalid" class="invalid-input">-->
+<!--            &lt;!&ndash; individual validation errors &ndash;&gt;-->
+<!--            <div *ngIf="name.errors?.['required']">Field is required</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Email &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--          <label for="email">Email</label>-->
+<!--          <input type="text"-->
+<!--                 id="email"-->
+<!--                 class="form-control"-->
+<!--                 name="email"-->
+<!--                 placeholder="Your email"-->
+<!--                 [(ngModel)]="model.email"-->
+<!--                 #email="ngModel"-->
+<!--                 [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"-->
+<!--                 required email/>-->
+<!--          &lt;!&ndash; input validation group &ndash;&gt;-->
+<!--          <div *ngIf="f.submitted && email.invalid" class="invalid-input">-->
+<!--            &lt;!&ndash; individual validation errors &ndash;&gt;-->
+<!--            <div *ngIf="email.errors?.['required']">Field is required</div>-->
+<!--            <div *ngIf="email.errors?.['email']">Field is not a valid email</div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Feedback &ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--          <label for="feedback">Feedback</label>-->
+<!--          <textarea-->
+<!--            id="feedback"-->
+<!--            class="form-control"-->
+<!--            name="feedback"-->
+<!--            placeholder="Your feedback"-->
+<!--            rows="10"-->
+<!--            [(ngModel)]="model.feedback"-->
+<!--            #feedback="ngModel"-->
+<!--            [ngClass]="{ 'is-invalid': f.submitted && feedback.invalid }"-->
+<!--            required minlength="10">-->
+<!--			    </textarea>-->
+<!--          &lt;!&ndash; input validation group &ndash;&gt;-->
+<!--          <div *ngIf="f.submitted && feedback.invalid" class="invalid-input">-->
+<!--            &lt;!&ndash; individual validation errors &ndash;&gt;-->
+<!--            <div *ngIf="feedback.errors?.['required']">Field is required</div>-->
+<!--            <div *ngIf="feedback.errors?.['minlength']">Field is too small (try 10 characters)</div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <button type="submit" class="btn btn-info pull-right">-->
+<!--          <i class="fa fa-envelope-o"></i>-->
+<!--          <span> Send Feedback</span>-->
+<!--        </button>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div class="offset-3"></div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--{{feedBackFrom.value | json}}-->
+
+<h2>Send a Reclamation  </h2>
+<div class="feedBack-container">
+<form #feedBackFrom="ngForm" ngForm (ngSubmit)="sendClaim(feedBackFrom.value)">
+  <div class="example-container">
+    <mat-form-field style="width: 60%">
+      <input matInput placeholder="email" name="senderEmail"   [value]="mail" disabled  >
+    </mat-form-field>
+    <mat-form-field style="width: 80%;"  >
+      <mat-select placeholder="subject"  ngModel name="subject"  >
+        <mat-option value="option">I can't get notification mail about  my application</mat-option>
+        <mat-option value="Error in my grades">Error in my grades</mat-option>
+        <mat-option value="Question about Required documents <">Question about Required documents </mat-option>
+        <mat-option value="General Question">General Question</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width: 80%;"  >
+      <textarea matInput placeholder="Textarea" ngModel #content="ngModel"  name="content"></textarea>
+    </mat-form-field>
+
+  </div>
+  <button type="submit" class="btn btn-info justify-content-center"   >
+    <i class="fa fa-envelope-o"></i>
+    <span> Send Feedback</span>
+  </button>
+
+</form>
+
+
+  <br><br><br><br>
+  <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
+<app-faq></app-faq>
+
+
+</div>
+<div class="empty-space">
+
+</div>
+
+
+
+
+
+<app-footer></app-footer>

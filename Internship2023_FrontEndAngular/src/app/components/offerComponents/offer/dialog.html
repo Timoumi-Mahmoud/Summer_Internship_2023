@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>{{data.title1}}</h2>
+<mat-dialog-content class="mat-typography">
+
+  <div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-7">
+      <img src="{{data.image1}}" width="500px">
+      <br>
+
+    </div>
+    <div class="col-4">
+
+      <h3><strong> published at</strong>  : {{data.deadline1  | date:'fullDate'}}</h3>
+      <h3><strong> Deadline</strong>  :  {{data.publishDate1  | date:'fullDate'}} </h3>
+      <h3><strong> University information</strong> </h3>
+      <p> {{data.universityName1}} ,  located in {{data.country1}} , it's complite address is :{{data.completeAddress1}} and it's official website is <a  target="_blank"  href="{{data.universityOfficialWebsite1}}" > see Link</a>   </p>
+      <br>
+
+      <p> {{data.universityName1}} accept {{data.numberOfplaces1}} students, with minimum  score is : {{data.score1}}
+      </p>
+      <aside>
+        <details>
+          <summary>How to calculate your <mark>Totale Score</mark> check the formule</summary>
+          <p>Score= (1st year+ 2end year)*2 /5.</p>
+        </details>
+      </aside>
+    </div>
+  </div>
+
+
+  <br>
+  <br>
+  <div class="container">
+
+    <h3>Offer conditions :</h3>
+    <p>
+      {{data.conditions1}}
+    </p>
+  </div>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close class="btn btn-secondary"><i class="material-icons">cancel</i>Cancel</button> &nbsp;
+  <button  mat-button [mat-dialog-close]="true" cdkFocusInitial class="btn btn-primary"  (click)="redirectToApplicationPage()"> <i class="material-icons">read_more</i> Apply</button>
+</mat-dialog-actions>
+
+
+<!-- Copyright 2019 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

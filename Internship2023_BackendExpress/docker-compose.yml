@@ -1,0 +1,35 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_DATABASE: espirtdb
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+     
+  node-backend:
+    image: mahmoudtimoumi/internship_express
+    container_name: node-backend
+    ports:
+      - "3200:3200"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ""
+      MYSQL_DATABASE: espirtdb
+      MONGO_URI: mongodb+srv://timoumimahmoud616:root@taskmanagerclaster.ykhuj3c.mongodb.net/Internship101?retryWrites=true&w=majority
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,0 +1,81 @@
+
+<div class="container-fluid">
+  <div class="row main-content bg-success text-center">
+    <div class="col-md-4 text-center company__info">
+      <span class="company__logo"> <img src="assets/images/espritLogo.jpg" width="280px"> </span>
+      <h4 class="company_title"> se former autrement</h4>
+    </div>
+    <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+      <div class="container-fluid">
+        <div class="row">
+          <h2>Log In</h2>
+        </div>
+        <div class="row">
+          <form  role="form" id="login-form" autocomplete="off"
+                 name="form"
+                 (ngSubmit)="f.form.valid && login()"
+                 #f="ngForm">
+            <div class="row">
+              <input type="email" name="email" id="email" class="form__input" placeholder="email"
+                     [(ngModel)]="form.email"
+                     required
+                     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                     #email="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && email.errors }">
+              <mat-error
+                *ngIf="email.invalid && email.touched">
+                <span *ngIf="email.errors?.['required']" >email  is required </span>
+                <span *ngIf="email.errors?.['pattern']" >Not a valid Email address </span>
+
+              </mat-error>
+              <mat-error>
+                <span *ngIf="!(email.invalid && email.touched)">
+                  &nbsp;
+                </span>
+              </mat-error>
+            </div>
+
+            <div class="row">
+              <input  [type]=" showPassword ? 'text' : 'password' " name="password" id="password" class="form__input" placeholder="Password"
+                     [type]="showPassword ? 'text' : 'password'"   placeholder="Password"
+                     [(ngModel)]="form.password"
+                     required
+                     minlength="6"
+                     #password="ngModel"
+                     [ngClass]="{ 'is-invalid': f.submitted && password.errors }">
+            </div>
+            <mat-error
+              *ngIf="password.errors && password.touched">
+              <span *ngIf="password.errors?.['required']" >password  is required </span>
+              <span *ngIf="password.errors['minlength']">
+                password must be at least 6 characters
+              </span>
+            </mat-error>
+            <br>
+            <mat-checkbox (click)='showHidePassword()'> {{ showPassword ? 'Hide' : 'Show' }} Password </mat-checkbox>
+            <br>
+            <button type="submit" class="btn btn-primary"  (click)="login()" > submit</button>
+          </form>
+        </div>
+        <div class="row">
+          <p>Don't have an account? <a href="/register">Register Here</a></p>
+        </div>
+        <hr>
+        <div class="row">
+          <a > <button mat-button (click)="openDialog()">Forget Password</button></a>
+          <br>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<div class="container-fluid text-center footer">
+  <p>Coded with &hearts; by <a href="https://github.com/Timoumi-Mahmoud">Timoumi Mahmoud.</a></p>
+</div>
+
+
+
+

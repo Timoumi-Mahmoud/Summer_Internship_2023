@@ -1,0 +1,82 @@
+
+/*.example-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  min-width: 300px;*/
+/*}*/
+
+/*.mat-table {*/
+/*  overflow: auto;*/
+/*  max-height: 500px;*/
+/*}*/
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  /* margin-left:30px;*/
+  /*margin-right:40px;*/
+
+  margin:40px 50px 50px 50px;
+
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.hightLightInactiveUsers{
+  background: gray;
+
+}
+
+.hightLightSelectedRow{
+  background: green;
+
+}
+
+.mat-icon {
+  position: center;
+  height: 60px;
+  width: 60px;
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.inactive{
+  background-color: #aaaaaa;
+}
+
+.selected {
+  background-color: red!important;
+}
+
+.mat-row:nth-child(even){
+  background-color: #e4f0ec;
+}
+
+.mat-row:nth-child(odd){
+  background-color:#ffffff;
+}
+
+
+example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+
+
+
+
+/*.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {*/
+/*  background: wheat;*/
+/*  font-size: 17px;*/
+/*  font-weight: bold;*/
+/*}*/
+

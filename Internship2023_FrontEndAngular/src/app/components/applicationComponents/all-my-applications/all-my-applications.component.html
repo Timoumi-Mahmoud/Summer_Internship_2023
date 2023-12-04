@@ -1,0 +1,122 @@
+<app-header>
+
+</app-header>
+<div *ngIf="applicationInfo.length===0" class="empty-applicationList">
+  <p>
+    Sorry you have no application  yet  you can check our  <a href="/offerList" target="_blank">offer List  <i class="material-icons"></i> </a>
+  </p>
+</div>
+<!--{{applicationInfo |json}}-->
+<div class="container">
+
+    <mat-card   *ngFor="let item of  applicationInfo " class="application-card">
+      <mat-card-header>
+        <div mat-card-avatar  ngClass="{{item.offer.country}}"></div>
+
+        <mat-card-title> {{item.offer.title}}</mat-card-title>
+        <mat-card-subtitle>  {{item.offer.universityName}}</mat-card-subtitle>
+      </mat-card-header>
+      <div style="display:inline-block">
+        <img mat-card-image src={{item.offer.offer_img}} alt="offerImage"  class="offer-img" >
+       <p> <mat-card-subtitle>  {{item.offer.description}}</mat-card-subtitle></p>
+
+        <ul style="display: inline-block">
+          <li><strong> The minimal required score is: </strong>{{item.offer.score}}  <br></li>
+          <li><strong> The Classes that can benifet of this offer are  : </strong>{{item.offer.targetClasses}}  <br></li>
+          <li><strong>The number student that will be accepted are : </strong> {{item.offer.numberOfplaces}}<br></li>
+          <li><strong> Published at: </strong> {{item.offer.publishDate | date:'fullDate'}}<br></li>
+          <li><strong> You have applied to this offer on : </strong> {{item.applyedAt | date:'fullDate'}}</li>
+
+        </ul>
+
+
+
+
+
+
+      </div>
+
+
+    <mat-card-content *ngIf="!collapsed">
+        <div class="row" >
+          <div class="col-4"></div>
+          <div class="col-4"></div>
+          <div class="col-4" >
+            <div *ngIf="item.applicationStatus==='Waiting'">
+              <mat-card class="status-waiting"> In progress &nbsp; <i class="material-icons">pending</i></mat-card>
+            </div>
+
+            <div>
+              <mat-card class="status-accepted" *ngIf="item.applicationStatus==='Accepted'"> Accepted &nbsp; &nbsp; <i class="material-icons">gpp_good</i> &nbsp;&nbsp; </mat-card>
+            </div>
+
+            <div>
+              <mat-card class="status-rejected" *ngIf="item.applicationStatus==='Rejected'"> Rejected &nbsp; &nbsp; <i class="material-icons">gpp_bad</i> &nbsp;&nbsp; </mat-card>
+            </div>
+
+            <div>
+              <mat-card class="status-waiting-list" *ngIf="item.applicationStatus==='Waiting-list'"> waiting list  &nbsp;&nbsp; <i class="material-icons" style="text-align: left">pending_actions</i> &nbsp;&nbsp; </mat-card>
+            </div>
+
+          </div>
+        </div>
+
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Your application:
+            </mat-panel-title>
+            <mat-panel-description style="margin-left: 800px" >
+             {{panelOpenState ? 'open' : 'closed'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+<!--          <p>I'm visible because I am open</p>-->
+          <p>Below are the information that you have been submitted to this offer:</p>
+
+          <table class="table">
+            <thead class="additional-info-head-table">
+            <tr>
+
+              <th scope="col">identifier</th>
+              <th scope="col">English level</th>
+              <th scope="col">Current Class</th>
+              <th scope="col">Bac grade</th>
+              <th scope="col">first year grade</th>
+              <th scope="col">second year grade</th>
+              <th scope="col">third year grade</th>
+              <th scope="col">Score</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+              <td> {{item.studentAdditionalInfo.identifier | json}}</td>
+              <td>{{item.englishLevel}}</td>
+              <td>{{item.currentClass}}</td>
+              <td>{{item.studentAdditionalInfo.GradeBac}}</td>
+              <td>{{item.studentAdditionalInfo.GradeFirstYear}}</td>
+              <td>{{item.studentAdditionalInfo.GradeSecondYear}}</td>
+              <td>{{item.studentAdditionalInfo.GradeThirdYear}}</td>
+              <td>{{item.totalScore}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+    <mat-card-actions>
+
+    </mat-card-actions>
+  </mat-card>
+
+
+
+</div>

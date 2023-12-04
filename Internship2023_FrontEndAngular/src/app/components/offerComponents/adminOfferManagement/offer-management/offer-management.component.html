@@ -1,0 +1,143 @@
+<app-side-bar-admin>
+
+  <br><br>
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col-3">-->
+<!--        <mat-form-field class="example-full-width">-->
+<!--          <input matInput placeholder="search ..." >-->
+<!--        </mat-form-field>-->
+<!--      </div>-->
+<!--      <div class="col-5">-->
+<!--        <mat-label>Score:&nbsp; &nbsp;</mat-label>-->
+<!--        <mat-slider min="0" max="800" step="10" showTickMarks discrete [displayWith]="formatLabel">-->
+<!--          <input matSliderThumb>-->
+<!--        </mat-slider>-->
+<!--      </div>-->
+<!--      <div class="col-3">-->
+<!--        One of three columns-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  -->
+
+  <div class="my-container">
+
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Search ..." >
+      </mat-form-field>
+    </form>
+
+    <br>
+    <div class="example-container mat-elevation-z8 containerWarper">
+      <table mat-table  matSort matSortActive="id"
+             matSortDirection="asc"
+             [dataSource]="dataSource"  class="offers-table">
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">Title</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.title}}</td>
+        </ng-container>
+        <ng-container matColumnDef="universityName">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">University Name</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.universityName}}
+            <a target="_blank" href="{{element.universityOfficialWebsite}}" title="{{element.universityOfficialWebsite}}"> <i class="material-icons">insert_link</i></a>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="mailAddress">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">Mail Address </th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.mailAddress}}</td>
+        </ng-container>
+        <ng-container matColumnDef="completeAddress">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">Complete Address </th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell">
+            <!--          <span ngClass="{{element.country}}"  >&nbsp;</span>-->
+            <div mat-card-avatar  ngClass="{{element.country}}" class="country_img_round"> &nbsp;&nbsp;&nbsp;</div>
+
+            {{element.completeAddress}}</td>
+        </ng-container>
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell" mat-sort-header="score">Score</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.score}}</td>
+        </ng-container>
+        <ng-container matColumnDef="nbrOfPlaces">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell" mat-sort-header="numberOfplaces">Number of places</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.numberOfplaces}}</td>
+        </ng-container>
+        <ng-container matColumnDef="deadline">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell" mat-sort-header="deadline">Deadline</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.deadlineDate | date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="targetDepartment">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell" mat-sort-header="targetDepartment">Target Department</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.targetDepartment}}</td>
+        </ng-container>
+        <ng-container matColumnDef="targetClasses">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">Target Classes</th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.targetClasses}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">Delete </th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell"> {{element.action}}
+<!--            <button mat-button (click)="seeOfferDetails(element._id)" ><i class="material-icons">remove_red_eye</i></button>-->
+            <button mat-button (click)="deleteOffer(element._id)" style="color: red"><i class="material-icons">delete</i></button>
+
+          </td>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="numberOfApplication">
+          <th mat-header-cell *matHeaderCellDef class="offers-table-cell">See All Applications </th>
+          <td mat-cell *matCellDef="let element" class="offers-table-cell">
+            <button mat-button color="accent" target="_blank" [routerLink]="['/applicationListOfAnOffer', element._id]"  ><i class="material-icons">send_time_extension</i> </button>
+
+          </td>
+        </ng-container>
+
+
+
+
+
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns ; let entry">
+          <!--          (click)="onRowClicked(row)"-->
+          <!--          [ngClass]="{'hightLightInactiveUsers': entry.isActive==0,-->
+          <!--        'hightLightSelectedRow': selectedRow ==row._id-->
+          <!--        }"-->
+
+          ></tr>
+      </table>
+      <br>
+      <br>
+      <mat-divider></mat-divider>
+
+      <mat-paginator #paginator
+                     [pageSize]="5"
+                     [pageSizeOptions]="[5, 10, 20,40]"
+                     [showFirstLastButtons]="true">
+      </mat-paginator>
+
+    </div>
+
+    <p>
+    </p>
+    <div  class="justify-content-center container" style="margin-left: 20px">
+
+    </div>
+
+
+  </div>
+
+</app-side-bar-admin>
+
+
+

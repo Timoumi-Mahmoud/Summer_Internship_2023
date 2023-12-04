@@ -1,0 +1,84 @@
+.tabs-container{
+  margin:50px 20px 100px 20px
+}
+h2{
+  letter-spacing: 4px;
+  word-spacing: 2px;
+  text-align: center;
+  display: inline-block;
+  margin: 20px 100px 20px 200px;
+  font-family: cursive;
+}
+.offer-info-table{
+  margin: 50px 20px 30px 20px;
+  /*border-collapse: separate;*/
+  border-spacing: 5px 1rem;
+/*border:1px solid;*/
+  width: 90%;
+}
+
+.offer-info-table td{
+  padding-right: 50px;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.td-name{
+  color: darkblue;
+  font-weight: bold;
+}
+
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label, .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+  color: #3f51b5;
+  font-size: 25px;
+}
+
+
+
+element {
+
+}
+.mat-mdc-tab .mdc-tab__text-label {
+
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+
+
+}
+/***********Form **********/
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+  position: center;
+  margin-left: 40px;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+
+.example-container .mat-radio-button {
+  margin: 0 12px;
+}
+
+
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+
+
+
+.accordion-container{
+  margin: 30px 50px 30px 50px ;
+}

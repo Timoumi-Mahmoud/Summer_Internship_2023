@@ -1,0 +1,238 @@
+
+
+<app-header></app-header>
+
+
+<div class="container">
+<!--<div class="row">-->
+<!--  <mat-toolbar >-->
+<!--    <mat-toolbar-row>-->
+<!--&lt;!&ndash;      <p style=" word-break: inherit"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus id iure, minus molestiae, molestias mollitia porro<br>&ndash;&gt;-->
+<!--&lt;!&ndash;        quia recusandae repellendus similique suscipit tempora vero. <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        Accusantium adipisci dicta dolorum iure minima numquam.&ndash;&gt;-->
+
+<!--        {{applicationForm.value | json}}-->
+<!--{{offerID}}-->
+<!--    </mat-toolbar-row>-->
+<!--  </mat-toolbar>-->
+<!--</div>-->
+
+  <div class="accordion-container-guide">
+    <mat-accordion >
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Guide
+          </mat-panel-title>
+          <mat-panel-description>
+            {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>
+          <strong> In order to apply to this offer please fill out the form bellow : </strong>
+        </p>        <mat-card>
+          <mat-card-content>
+            <ul>
+              <li> All Fields are required</li>
+              <li>Please review your submitted information before clicking on the apply button</li>
+              <li>If every thing goes well you will recive instantly a conformation email </li>
+              <li>Based on your score:
+                <ul>
+                  <li>In case your score equal or greater than the required score given by the university you will be placed instantly into the waiting list in order to verify once more your application file,
+                    and also to select only the higher score to fill out the required free places offered by the foriegn university</li>
+                  <li>In case your score is less then the required score you will receive a rejection email. </li>
+                </ul>
+              </li>
+              <li>The final Date in the selection process is  a week after the deadline of the offer , you can check  the status  of your application either by consulting  in the  <a href="/myApplication" target="_blank"> MyApplication section </a> or  we will send you a notification email  </li>
+            </ul>
+
+          </mat-card-content>
+        </mat-card>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+
+
+
+
+  <div>
+
+  </div>
+  <br>
+<mat-divider></mat-divider>
+  <form [formGroup]="applicationForm">
+    <mat-stepper orientation="vertical">
+      <mat-step>
+        <ng-template matStepLabel>Step 1 </ng-template>
+        <ng-template matStepContent>
+          <p>Please enter your identifier</p>
+
+          <div class="example-container">
+            <mat-form-field hintLabel="Max 15 characters">
+              <input matInput #input maxlength="15"   placeholder="Example E1953367HKs5" formControlName="identifier">
+              <mat-hint align="end">{{input.value.length || 0}}/15</mat-hint>
+<!--              <mat-hint>Errors appear instantly!</mat-hint>-->
+              <mat-error *ngIf="identiferFromControle.hasError('required')">
+                 identifier is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <button mat-button matStepperNext (click)="getAdditonalData()">Next</button>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 2</ng-template>
+        <ng-template matStepContent>
+          <p>Your English Level</p>
+          <mat-form-field   class="select-option">
+            <mat-label>Select an Level</mat-label>
+            <mat-select disableRipple formControlName="englishLevel"  >
+              <mat-option value="A1"> A1</mat-option>
+              <mat-option value="A2"> A2</mat-option>
+              <mat-option value="B1"> B1</mat-option>
+              <mat-option value="B2"> B2</mat-option>
+              <mat-option value="C1"> C1</mat-option>
+              <mat-option value="C2"> C2</mat-option>
+              <mat-option value="I dont know">I dont know</mat-option>
+
+            </mat-select>
+            <mat-error *ngIf="englishLevelFromControle.hasError('required')">
+              your english level  is mandatory
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </ng-template>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Step 3</ng-template>
+        <ng-template matStepContent>
+          <p>This content was also rendered lazily</p>
+
+          <input type="file" class="file-input"
+                 (change)="onFileSelected($event)" #fileUpload formControlName="file">
+
+          <div class="file-upload">
+
+            {{fileName || "No file uploaded yet. "}} &nbsp;&nbsp;&nbsp;
+
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUpload.click()"   >
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+          <br>
+
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 4</ng-template>
+        <ng-template matStepContent>
+          <p>Your Class</p>
+          <mat-form-field class="select-option">
+            <mat-select ngModel name="targetClasses" placeholder="Class" formControlName="currentClass"   width="50%" >
+              <mat-option >None</mat-option>
+              <mat-option value="ARCTIC">ARCTIC</mat-option>
+              <mat-option value="SE">SE</mat-option>
+              <mat-option value="SIM">SIM</mat-option>
+              <mat-option value="GAMIX">GAMIX</mat-option>
+              <mat-option value="TWIN">TWIN</mat-option>
+              <mat-option value="ERPI">ERPI</mat-option>
+            </mat-select>
+            <mat-error *ngIf="classFromControle.hasError('required')">
+              your current class is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext >Next</button>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 5</ng-template>
+        <ng-template matStepContent>
+          <p>I certify on my honor: *</p>
+          <mat-checkbox required >The accuracy of the data I have provided</mat-checkbox>
+
+          <br>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext >Next</button>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 6</ng-template>
+        <ng-template matStepContent>
+          <p>If this opportunity materializes: *</p>
+          <mat-checkbox>I undertake to regularize my financial situation at Esprit before my new experience abroad</mat-checkbox>
+          <mat-checkbox>I will accept any pedagogical adjustments required by my Esprit pedagogical supervisors</mat-checkbox>
+          <br>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Step 7</ng-template>
+        <p>Review My application</p>
+
+
+
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">identifier</th>
+<!--            <th scope="col">full Name</th>-->
+            <th scope="col">English level</th>
+            <th scope="col">Current Class</th>
+            <th scope="col">Bac grade</th>
+            <th scope="col">first year grade</th>
+            <th scope="col">second year grade</th>
+            <th scope="col">third year grade</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">#</th>
+            <td> {{applicationForm.value.identifier | json}}</td>
+<!--            <td>Otto</td>-->
+            <td>{{applicationForm.value.englishLevel}}</td>
+            <td>{{applicationForm.value.currentClass}}</td>
+            <td>{{GradeBac1}}</td>
+            <td>{{Grade1ere}}</td>
+            <td>{{Grade2eme}}</td>
+            <td>{{Grade3eme}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <button mat-button matStepperPrevious>Back</button>
+      </mat-step>
+    </mat-stepper>
+  </form>
+  <mat-divider></mat-divider>
+</div>
+
+
+<button mat-raised-button (click)="sendApplication()" [disabled]="applicationForm.invalid"> Submit My Application</button>
+
+<br><br>
+<div style="text-align: center; margin-left: 50%">
+  <mat-spinner [diameter]="90" color="accent" *ngIf="spinnerActive===true" style="text-align: center;">
+  </mat-spinner></div>
+<div class="empty-space">
+
+</div>
+<app-footer>
+
+</app-footer>

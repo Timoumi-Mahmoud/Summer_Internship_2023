@@ -1,0 +1,62 @@
+<mat-toolbar color="warn" >
+  <mat-toolbar-row>
+    <button mat-button (click)="sidenav.toggle()"><mat-icon > menu</mat-icon></button>
+    <h1>Admin Space</h1>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container >
+  <mat-sidenav #sidenav  >
+    <mat-nav-list style="margin-top:100px">
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button  [matMenuTriggerFor]="offers" >Offer management &nbsp; &nbsp; &nbsp; &nbsp;</button>
+        <mat-menu  #offers="matMenu">
+          <a mat-list-item href="/addOffer"> <button mat-menu-item  >  Add new Offer </button></a>
+          <a mat-list-item href="/AdminOfferList"> <button mat-menu-item  >  List of offers </button></a>
+        </mat-menu>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button [matMenuTriggerFor]="users">Users&nbsp; &nbsp; &nbsp; &nbsp;</button>
+        <mat-menu #users="matMenu">
+          <a mat-list-item href="/userCrud"> <button mat-menu-item  >  Manage Users </button></a>
+          <a mat-list-item href="/ListOffer"> <button mat-menu-item  >  Add new Admin User </button></a>
+        </mat-menu>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button [matMenuTriggerFor]="applications">Application &nbsp; &nbsp; &nbsp; &nbsp;</button>
+        <mat-menu #applications="matMenu">
+          <a mat-list-item href="/applicationList"> <button mat-menu-item  >  List of application </button></a>
+          <a mat-list-item href="/export"> <button mat-menu-item  >  Export Application List </button></a>
+        </mat-menu>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <button mat-button [matMenuTriggerFor]="claims">Claims &nbsp; &nbsp; &nbsp; &nbsp;</button>
+        <mat-menu #claims="matMenu">
+          <a mat-list-item href="/claims"> <button mat-menu-item  >  new Claims </button></a>
+          <a mat-list-item href="/claims"> <button mat-menu-item  > All claims  </button></a>
+        </mat-menu>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+
+
+      <a mat-list-item (click)="logout()">  <i class="material-icons">logout</i> &nbsp; &nbsp; Logout  </a>
+      <mat-divider></mat-divider>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh; margin-top: 30px" >
+      <ng-content>
+      </ng-content>
+
+      </div>
+  </mat-sidenav-content>
+
+
+
+</mat-sidenav-container>
+

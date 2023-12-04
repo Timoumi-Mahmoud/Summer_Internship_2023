@@ -1,0 +1,76 @@
+.file-input {
+  display: none;
+}
+
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 80%;
+}
+
+
+
+.mat-mdc-raised-button{
+  margin-top: 60px;
+  margin-left: 50%;
+  width: 300px;
+  height: 60px;
+}
+.mat-mdc-raised-button:hover{
+  background-color: orange;
+}
+.mat-mdc-raised-button:focus{
+  background-color: grey;
+  font-size: 1.25rem;
+  color: white;
+}
+
+
+strong{
+  font-size: 20px;
+}
+
+mat-card{
+  margin:40px 0 40px 0;
+}
+mat-card-content{
+  font-family: sans-serif;
+  font-size: 17px;
+}
+
+a{
+  color:steelblue;
+  text-decoration: none;
+}
+
+a:visited {
+  color:gray ;
+}
+
+a:hover {
+  color: darkorange;
+  font-size: 25px;
+font-family: monospace}
+
+a:active {
+color:red;
+}
+
+.empty-space{
+  margin-top: 200px;
+}
+
+
+
+.accordion-container-guide{
+  margin: 90px auto 90px auto;
+}
+
+
+.select-option {
+  width: 600px;
+}

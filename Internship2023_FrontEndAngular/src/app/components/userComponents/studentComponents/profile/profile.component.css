@@ -1,0 +1,57 @@
+/*.invalid {*/
+/*  border: 1px solid red;*/
+/*}*/
+
+/*.error {*/
+/*  color: red;*/
+/*}*/
+.invalid {
+  border: 1px solid red;
+}
+
+.error {
+  color: red;
+}
+
+.country_img_round{
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: 30px;
+
+  background-color: white;
+  /* commented for demo
+  float: left;
+  margin-left: 125px;
+  margin-top: 20px;
+  */
+
+  /*for demo*/
+  display:inline-block;
+  vertical-align:middle;
+}
+
+
+.img-container{
+
+  width: 400px;
+  height: 400px;
+  /*border-radius: 50%;*/
+  overflow: hidden;
+  margin-left: 30px;
+
+  background-color: white;
+  /* commented for demo
+  float: left;
+  margin-left: 125px;
+  margin-top: 20px;
+  */
+
+  /*for demo*/
+  display:inline-block;
+  vertical-align:middle;
+
+
+
+}

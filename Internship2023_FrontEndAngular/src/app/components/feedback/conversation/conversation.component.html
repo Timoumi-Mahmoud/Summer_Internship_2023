@@ -1,0 +1,61 @@
+<p>conversation works!</p>
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" opened>
+    <mat-card>
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon matListIcon>forum</mat-icon>
+          </ng-template>
+          <mat-list class="conversations">
+            <mat-list-item>
+              <mat-icon matListIcon>forum</mat-icon>
+              <p></p>
+            </mat-list-item>
+          </mat-list>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-sidenav>
+  <mat-sidenav position="end" mode="side" opened >
+    <mat-card>
+      <mat-list class="members">
+        <mat-list-item >
+          <p></p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card>
+  </mat-sidenav>
+  <section class="empty-conversation" >
+    <h1 class="mat-display-1">Select a conversation from the left to start chatting</h1>
+  </section>
+  <section >
+    <div class="mat-typography conversation-header">
+      <h2>
+        <mat-icon>forum</mat-icon>
+        </h2>
+      <p>
+        <mat-icon>account_circle</mat-icon>
+         Members</p>
+    </div>
+
+    <mat-divider></mat-divider>
+    <mat-list dense class="conversation-history mat-typography">
+      <mat-list-item >
+        <img  matListAvatar
+        />
+        <p ></p>
+        <p  class="text-center">
+          <b>username</b> has joined the conversation</p>
+      </mat-list-item>
+    </mat-list>
+
+    <div class="conversation-input">
+      <mat-divider></mat-divider>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Start chatting..." name="text" >
+        <mat-icon matSuffix >send</mat-icon>
+      </mat-form-field>
+    </div>
+  </section>
+</mat-sidenav-container>
